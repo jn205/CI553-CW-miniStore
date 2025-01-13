@@ -21,8 +21,10 @@ public class CashierView implements Observer
   
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
-  private static final String BOUGHT = "Bought/Pay";
-
+  private static final String BOUGHT = "Bought/pay";
+  private static final String DISCOUNT = "10% OFF";
+  private static final String CLEAR = "CLEAR";
+  
   private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
@@ -31,6 +33,8 @@ public class CashierView implements Observer
   private final JButton     theBtCheck = new JButton( CHECK );
   private final JButton     theBtBuy   = new JButton( BUY );
   private final JButton     theBtBought= new JButton( BOUGHT );
+  private final JButton     theBtDiscount= new JButton( DISCOUNT );
+  private final JButton     theBtClear= new JButton( CLEAR);
 
   private StockReadWriter theStock     = null;
   private OrderProcessing theOrder     = null;
@@ -66,17 +70,17 @@ public class CashierView implements Observer
     pageTitle.setText( "Thank You for Shopping at MiniStrore" );                        
     cp.add( pageTitle );  
     
-    theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
+    theBtCheck.setBounds( 16, 25+200*0, 80, 40 );    // Check Button
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText() ) );
     cp.add( theBtCheck );                           //  Add to canvas
 
-    theBtBuy.setBounds( 16, 25+60*1, 80, 40 );      // Buy button 
+    theBtBuy.setBounds( 16, 25+45*1, 80, 40 );      // Buy button 
     theBtBuy.addActionListener(                     // Call back code
       e -> cont.doBuy() );
     cp.add( theBtBuy );                             //  Add to canvas
 
-    theBtBought.setBounds( 16, 25+60*3, 80, 40 );   // Bought Button
+    theBtBought.setBounds( 5, 210, 100, 40 );   // Bought Button
     theBtBought.addActionListener(                  // Call back code
       e -> cont.doBought() );
     cp.add( theBtBought );                          //  Add to canvas
@@ -96,6 +100,17 @@ public class CashierView implements Observer
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
     theInput.requestFocus();                        // Focus is here
+    
+    theBtDiscount.setBounds( 10, 160, 90, 40 );   // Bought Button
+    theBtDiscount.addActionListener(                  // Call back code
+      e -> cont.doDiscount() );
+    cp.add( theBtDiscount ); 
+    
+    theBtClear.setBounds( 16, 25+45*2, 80, 40 );   // Bought Button
+    theBtClear.addActionListener(                  // Call back code
+      e -> cont.doClear() );
+    cp.add( theBtClear ); 
+    
   }
 
   /**
@@ -127,5 +142,6 @@ public class CashierView implements Observer
     
     theInput.requestFocus();               // Focus is here
   }
+  
 
 }

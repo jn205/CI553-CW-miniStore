@@ -58,4 +58,11 @@ public class Product implements Serializable
     theQuantity = aQuantity;
   }
 
+  public void mergeProduct(Product otherProduct) {
+		if (this.theProductNum.equals(otherProduct.getProductNum())) {
+			this.theQuantity += otherProduct.getQuantity();
+			this.thePrice = (this.thePrice + otherProduct.getPrice()) / 2;
+		}
+	}
+
 }

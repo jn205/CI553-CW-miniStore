@@ -1,7 +1,6 @@
 package catalogue;
 
 import java.io.Serializable;
-import java.util.Collections;
 
 /**
  * Write a description of class BetterBasket here.
@@ -11,10 +10,10 @@ import java.util.Collections;
  */
 public class BetterBasket extends Basket implements Serializable
 {
-  private static final long serialVersionUID = 1L;
+private static final long serialVersionUID =1L;
+
+}
+//code 
+
   
 
-  // You need to add code here
-  // merge the items for same product,
-  // or sort the item based on the product number
-}

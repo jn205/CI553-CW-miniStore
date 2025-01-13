@@ -54,11 +54,25 @@ public class Basket extends ArrayList<Product> implements Serializable
    * @return true if successfully adds the product
    */
   // Will be in the Java doc for Basket
-  @Override
-  public boolean add( Product pr )
-  {                              
-    return super.add( pr );     // Call add in ArrayList
+  @Override 
+  public boolean add( Product pr) {
+
+  	boolean found = false;
+  	for(Product existingProduct: this) {
+  		if(existingProduct.getProductNum().equals(pr.getProductNum())) {
+  		existingProduct.mergeProduct(pr);
+  		found = true;
+  		break;
+  		
+  		}
+  	}
+  	if(!found) {
+  		return super.add( pr );  // ArryList 
+  	}
+  	return true;
   }
+
+
 
   /**
    * Returns a description of the products in the basket suitable for printing.

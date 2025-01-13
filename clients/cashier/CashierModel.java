@@ -49,8 +49,39 @@ public class CashierModel extends Observable
   {
     return theBasket;
   }
-
-  /**
+  public void doDiscount()
+  {
+	  String theAction = "";
+	  
+	  try {
+		  if(theBasket != null && !theBasket.isEmpty()) {
+			  for (Product product : theBasket) {
+				  double StorePrice = product.getPrice();
+				  double discountPrice = StorePrice * 0.90;
+				  product.setPrice(discountPrice);
+			  }
+			  theAction += String.format("Discount applied");
+		  } else {
+			  theAction ="No product to apply discount to.";
+			  
+		  }
+	  } catch(Exception e) {
+		  DEBUG.error("%s\n%s","Cashier.model.doDiscount", e.getMessage());
+		  theAction = "Error applying discount" + e.getMessage();
+	  }
+	  theState = State.process;
+	  setChanged();
+	  notifyObservers(theAction);
+  }
+  
+ public void doClear()
+ {
+	 String theAction="";
+	 theBasket.clear();
+	 theAction = "Enter Product Number";
+	 setChanged(); notifyObservers(theAction);
+ }
+ /**
    * Check if the product is in Stock
    * @param productNum The product number
    */
